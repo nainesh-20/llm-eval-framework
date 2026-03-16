@@ -1,0 +1,79 @@
+name: LLM Eval CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Model to evaluate (leave blank for all configured models)"
+        required: false
+        default: ""
+      post_comment:
+        description: "Post results as a GitHub PR comment (requires PR_NUMBER secret)"
+        required: false
+        default: "false"
+
+jobs:
+  evaluate:
+    name: Run LLM Evaluation Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -e ".[eval]"
+
+      - name: Validate config (dry run)
+        run: llm-eval run --config configs/eval.yaml --dry-run
+
+      - name: Run evaluation suite
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LOG_LEVEL: INFO
+        run: |
+          MODEL="${{ github.event.inputs.model }}"
+          if [ -n "$MODEL" ]; then
+            llm-eval run --config configs/eval.yaml --model "$MODEL"
+          else
+            llm-eval run --config configs/eval.yaml
+          fi
+
+      - name: Run red-team evaluation
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: llm-eval red-team --config configs/eval.yaml
+        # Red-team failures are warnings, not blockers
+        continue-on-error: true
+
+      - name: Post PR comment with eval report
+        if: github.event.inputs.post_comment == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ secrets.PR_NUMBER }}
+        run: python -m llm_eval.reporting.pr_comment
+
+      - name: Upload eval results artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-results-${{ github.run_number }}
+          path: results/
+          retention-days: 30
+
+      - name: Check regression gate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: llm-eval report --config configs/eval.yaml
+        # Exit code 1 if any metric fails its threshold → blocks merge

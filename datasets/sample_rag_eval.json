@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "question": "What is retrieval-augmented generation (RAG)?",
+    "context": "Retrieval-Augmented Generation (RAG) is an AI technique that combines information retrieval with text generation. Introduced by Lewis et al. in 2020, RAG retrieves relevant documents from an external knowledge base at inference time and provides them as context to a generative model. This grounding reduces hallucinations and allows the model to cite up-to-date information without retraining.",
+    "reference_answer": "RAG is a technique that retrieves relevant documents from a knowledge base and uses them as context for a language model to generate more accurate, grounded responses."
+  },
+  {
+    "id": 2,
+    "question": "What is the difference between precision and recall?",
+    "context": "Precision is the fraction of retrieved documents that are relevant: TP / (TP + FP). Recall is the fraction of all relevant documents that were retrieved: TP / (TP + FN). A high-precision system returns fewer but more accurate results. A high-recall system returns most relevant items but may include many irrelevant ones. The F1 score is the harmonic mean of precision and recall.",
+    "reference_answer": "Precision measures the fraction of retrieved items that are relevant. Recall measures the fraction of all relevant items that were retrieved. They represent a trade-off: optimizing one often reduces the other."
+  },
+  {
+    "id": 3,
+    "question": "How does the transformer attention mechanism work?",
+    "context": "The transformer attention mechanism, introduced in 'Attention Is All You Need' (Vaswani et al., 2017), computes attention scores by taking the dot product of query (Q) and key (K) vectors, scaling by the square root of the dimension, applying softmax, then multiplying by value (V) vectors. Multi-head attention runs this process in parallel across h heads and concatenates the results, allowing the model to attend to different representation subspaces.",
+    "reference_answer": "Transformer attention computes a weighted sum of value vectors, where weights are determined by the scaled dot-product similarity between query and key vectors, followed by a softmax operation."
+  },
+  {
+    "id": 4,
+    "question": "What is gradient descent?",
+    "context": "Gradient descent is an optimization algorithm used to minimize a loss function by iteratively moving in the direction of the steepest descent (negative gradient). In each step, the parameters θ are updated as: θ = θ - α∇L(θ), where α is the learning rate and ∇L(θ) is the gradient. Variants include stochastic gradient descent (SGD), mini-batch SGD, Adam, and RMSProp.",
+    "reference_answer": "Gradient descent is an optimization algorithm that minimizes a loss function by iteratively updating model parameters in the direction opposite to the gradient."
+  },
+  {
+    "id": 5,
+    "question": "What is overfitting in machine learning?",
+    "context": "Overfitting occurs when a model learns the training data too well, including noise and irrelevant patterns, resulting in poor generalization to unseen data. Signs include high training accuracy but low validation accuracy. Common remedies include regularization (L1/L2), dropout, early stopping, data augmentation, and reducing model complexity.",
+    "reference_answer": "Overfitting is when a model memorizes training data including noise, leading to poor performance on new data. It can be addressed through regularization, dropout, and early stopping."
+  },
+  {
+    "id": 6,
+    "question": "What is the BLEU score used for?",
+    "context": "BLEU (Bilingual Evaluation Understudy) is an automatic metric for evaluating machine-generated text against human reference translations. It measures n-gram overlap between the candidate and reference texts, with a brevity penalty for short outputs. BLEU scores range from 0 to 1 (or 0 to 100). While widely used, BLEU has known limitations: it doesn't capture semantic similarity and correlates poorly with human judgment for some tasks.",
+    "reference_answer": "BLEU is an automatic evaluation metric that measures n-gram overlap between generated text and reference text, commonly used in machine translation and text generation evaluation."
+  },
+  {
+    "id": 7,
+    "question": "What is transfer learning?",
+    "context": "Transfer learning is a machine learning technique where a model trained on one task is adapted for a different but related task. In NLP, this typically involves pre-training a large model on a general corpus (e.g., GPT, BERT) and fine-tuning it on a downstream task with labeled data. Transfer learning dramatically reduces the amount of task-specific data and computation required.",
+    "reference_answer": "Transfer learning adapts a model pre-trained on one task to a different related task, leveraging learned representations to reduce the need for large amounts of task-specific training data."
+  },
+  {
+    "id": 8,
+    "question": "What is the vanishing gradient problem?",
+    "context": "The vanishing gradient problem occurs in deep neural networks during backpropagation when gradients become exponentially small as they propagate back through many layers, causing early layers to learn very slowly or not at all. It is especially severe with sigmoid and tanh activations. Solutions include ReLU activations, batch normalization, residual connections (ResNets), and careful weight initialization (He, Xavier).",
+    "reference_answer": "The vanishing gradient problem occurs when gradients shrink exponentially during backpropagation in deep networks, preventing earlier layers from learning effectively. ReLU activations and residual connections help mitigate it."
+  },
+  {
+    "id": 9,
+    "question": "What is a vector database and why is it used in AI applications?",
+    "context": "A vector database stores and indexes high-dimensional vector embeddings, enabling efficient similarity search (nearest neighbor lookup). In AI applications, text, images, and other data are embedded into vector space using models like CLIP or Sentence-BERT. Vector databases (e.g., Pinecone, Weaviate, Qdrant, pgvector) enable semantic search, RAG pipelines, recommendation systems, and anomaly detection at scale.",
+    "reference_answer": "A vector database stores high-dimensional embeddings and supports fast similarity search, making it essential for RAG pipelines, semantic search, and recommendation systems."
+  },
+  {
+    "id": 10,
+    "question": "What is the difference between a language model and a chat model?",
+    "context": "A base language model is trained to predict the next token given a sequence, learning statistical patterns from large text corpora. A chat model is a language model further fine-tuned using techniques like instruction fine-tuning and RLHF (Reinforcement Learning from Human Feedback) to follow instructions, engage in dialogue, and decline harmful requests. Examples: GPT-4-base (language model) vs GPT-4o (chat/instruction model).",
+    "reference_answer": "A base language model predicts next tokens from text. A chat model is additionally fine-tuned with instruction tuning and RLHF to follow instructions and engage in helpful dialogue."
+  },
+  {
+    "id": 11,
+    "question": "What is RLHF?",
+    "context": "Reinforcement Learning from Human Feedback (RLHF) is a training methodology used to align language models with human preferences. It involves three stages: (1) supervised fine-tuning on demonstration data, (2) training a reward model on human preference comparisons, and (3) fine-tuning the language model via PPO (Proximal Policy Optimization) to maximize the reward model's score. RLHF was used in InstructGPT and ChatGPT.",
+    "reference_answer": "RLHF is a training technique that aligns language models with human preferences by first training a reward model on human feedback, then using reinforcement learning (PPO) to optimize the LLM against that reward."
+  },
+  {
+    "id": 12,
+    "question": "How does cosine similarity work?",
+    "context": "Cosine similarity measures the cosine of the angle between two vectors in a multi-dimensional space. It is computed as the dot product of the vectors divided by the product of their magnitudes: cos(θ) = (A·B) / (|A||B|). Values range from -1 (opposite directions) to 1 (identical direction), with 0 indicating orthogonality. Cosine similarity is widely used in NLP to compare text embeddings because it is invariant to vector magnitude.",
+    "reference_answer": "Cosine similarity measures the angle between two vectors, computed as their dot product divided by the product of their magnitudes. It ranges from -1 to 1 and is commonly used to compare text embeddings."
+  },
+  {
+    "id": 13,
+    "question": "What is fine-tuning and when should you use it?",
+    "context": "Fine-tuning adapts a pre-trained model to a specific task by continuing training on a smaller task-specific dataset. It is appropriate when: (1) you have labeled domain-specific data, (2) the task requires consistent output format or style, (3) few-shot prompting doesn't achieve sufficient accuracy, or (4) you need lower inference latency/cost by using a smaller fine-tuned model. Fine-tuning is less appropriate when the base model already performs well via prompting.",
+    "reference_answer": "Fine-tuning continues training a pre-trained model on task-specific data. It is best used when you have labeled domain data, need consistent output format, or prompting alone is insufficient."
+  },
+  {
+    "id": 14,
+    "question": "What is a confusion matrix?",
+    "context": "A confusion matrix is a table that summarizes the performance of a classification model. For binary classification, it contains four values: True Positives (TP), False Positives (FP), True Negatives (TN), and False Negatives (FN). From these, key metrics are derived: accuracy = (TP+TN)/(TP+TN+FP+FN), precision = TP/(TP+FP), recall = TP/(TP+FN), and F1 = 2*(precision*recall)/(precision+recall).",
+    "reference_answer": "A confusion matrix summarizes classification results by showing TP, FP, TN, and FN counts. It is used to compute precision, recall, F1, and accuracy metrics."
+  },
+  {
+    "id": 15,
+    "question": "What is the purpose of batch normalization?",
+    "context": "Batch normalization (Ioffe & Szegedy, 2015) normalizes layer activations across the mini-batch during training by subtracting the batch mean and dividing by the batch standard deviation, then applying learnable scale (γ) and shift (β) parameters. Benefits include faster training convergence, reduced sensitivity to initialization, regularization effect (reduces need for dropout), and mitigation of internal covariate shift.",
+    "reference_answer": "Batch normalization normalizes layer inputs across a mini-batch, enabling faster training, reducing sensitivity to initialization, and providing a regularization effect."
+  },
+  {
+    "id": 16,
+    "question": "What is prompt engineering?",
+    "context": "Prompt engineering is the practice of designing input text (prompts) to elicit desired outputs from language models without modifying model weights. Techniques include zero-shot prompting, few-shot examples, chain-of-thought prompting (Wei et al., 2022), role prompting, instruction clarity, and output format specification. Effective prompt engineering can significantly improve model performance on reasoning, coding, and structured extraction tasks.",
+    "reference_answer": "Prompt engineering designs input prompts to guide language model behavior without fine-tuning. Techniques include few-shot examples, chain-of-thought reasoning, and precise instruction formulation."
+  },
+  {
+    "id": 17,
+    "question": "What is an embedding model?",
+    "context": "An embedding model transforms input data (text, images, etc.) into dense vector representations that capture semantic meaning. For text, embedding models encode sentences or documents into fixed-size vectors such that semantically similar content is represented by vectors close in the embedding space. Examples include text-embedding-3-large (OpenAI), all-MiniLM-L6-v2 (Sentence-BERT), and Cohere Embed. Embeddings are used in semantic search, clustering, classification, and RAG.",
+    "reference_answer": "An embedding model maps inputs (text, images) into dense vectors where similar items are close in vector space. They are foundational for semantic search, RAG, and classification tasks."
+  },
+  {
+    "id": 18,
+    "question": "What is the role of the temperature parameter in LLMs?",
+    "context": "The temperature parameter controls the randomness of token sampling in language model generation. At temperature=0, the model always selects the most probable next token (greedy decoding), producing deterministic, consistent outputs. Higher temperatures (e.g., 0.7–1.0) increase randomness by flattening the probability distribution, producing more creative and varied outputs. Temperature > 1 can produce incoherent text. For evaluation tasks, temperature=0 is preferred for reproducibility.",
+    "reference_answer": "Temperature controls output randomness in LLMs. Low values (0) produce deterministic outputs; higher values increase diversity and creativity. For evaluation, temperature=0 is preferred."
+  },
+  {
+    "id": 19,
+    "question": "What is the context window in a language model?",
+    "context": "The context window (or context length) is the maximum number of tokens a language model can process in a single forward pass, including both input and output. Tokens beyond this limit are ignored. Larger context windows (e.g., Claude's 200K tokens, Gemini's 1M tokens) allow processing of longer documents, entire codebases, or multi-turn conversations. However, performance can degrade for information in the middle of very long contexts ('lost in the middle' effect).",
+    "reference_answer": "The context window is the maximum tokens a model can process at once. Larger windows allow longer documents but may suffer from the 'lost in the middle' degradation for very long inputs."
+  },
+  {
+    "id": 20,
+    "question": "What is the difference between semantic search and keyword search?",
+    "context": "Keyword search (e.g., BM25, TF-IDF) retrieves documents containing the exact query terms and ranks by term frequency statistics. Semantic search uses embedding models to represent queries and documents as vectors, retrieving results by vector similarity. Semantic search handles synonyms, paraphrases, and conceptual queries that don't share exact words with the document. Hybrid search combines both approaches to leverage keyword precision and semantic recall.",
+    "reference_answer": "Keyword search matches exact terms; semantic search uses embeddings to find conceptually similar content. Semantic search handles synonyms and paraphrases better; hybrid search combines both."
+  },
+  {
+    "id": 21,
+    "question": "What is chain-of-thought prompting?",
+    "context": "Chain-of-thought (CoT) prompting (Wei et al., 2022) improves language model reasoning by including intermediate reasoning steps in the prompt, either as few-shot examples or via zero-shot instruction ('Let's think step by step'). CoT significantly improves performance on arithmetic, commonsense reasoning, and symbolic tasks. It works by decomposing complex problems into simpler steps that the model solves sequentially. Tree-of-Thought and Graph-of-Thought are extensions.",
+    "reference_answer": "Chain-of-thought prompting elicits step-by-step reasoning from LLMs, significantly improving performance on complex reasoning tasks by decomposing problems into intermediate steps."
+  },
+  {
+    "id": 22,
+    "question": "What is model quantization?",
+    "context": "Model quantization reduces the numerical precision of model weights and activations from 32-bit floats (FP32) to lower bit-widths such as 16-bit (FP16, BF16), 8-bit (INT8), or 4-bit (INT4). This reduces memory footprint and speeds up inference with minimal accuracy loss. Techniques include post-training quantization (PTQ) and quantization-aware training (QAT). Libraries like bitsandbytes and GGUF enable running large models on consumer hardware.",
+    "reference_answer": "Quantization reduces model weight precision (e.g., FP32→INT8) to decrease memory usage and improve inference speed, with minimal accuracy loss when done carefully."
+  },
+  {
+    "id": 23,
+    "question": "What is an AI agent?",
+    "context": "An AI agent is a system that uses a language model as a reasoning engine to autonomously take actions toward a goal. Agents typically have access to tools (web search, code execution, APIs), maintain memory of prior steps, and iterate through a plan-act-observe loop (ReAct pattern). Frameworks like LangChain, LlamaIndex, and AutoGen facilitate building agents. Key challenges include reliability, task decomposition, and preventing unintended actions.",
+    "reference_answer": "An AI agent uses an LLM as its reasoning core to autonomously plan and execute multi-step tasks using tools, following a plan-act-observe loop to achieve a goal."
+  },
+  {
+    "id": 24,
+    "question": "What is the purpose of evaluation datasets like MMLU?",
+    "context": "MMLU (Massive Multitask Language Understanding) is a benchmark of 57 academic subjects testing a model's world knowledge and problem-solving ability across domains including STEM, humanities, and social sciences. It consists of multiple-choice questions sourced from academic exams. MMLU is used to compare model capabilities, track progress, and identify knowledge gaps. Other prominent benchmarks include HumanEval (coding), GSM8K (math), and HellaSwag (commonsense).",
+    "reference_answer": "Evaluation benchmarks like MMLU measure LLM capabilities across standardized tasks, enabling comparison between models and tracking progress over time."
+  },
+  {
+    "id": 25,
+    "question": "What is the difference between zero-shot and few-shot learning?",
+    "context": "Zero-shot learning tasks a model to perform a task it has never been explicitly trained on, relying entirely on its pre-trained knowledge and the task description in the prompt. Few-shot learning provides a small number of input-output examples (typically 1–10) within the prompt context to demonstrate the desired task format and behavior. Few-shot is generally more accurate but uses more context window tokens. Both approaches are forms of in-context learning.",
+    "reference_answer": "Zero-shot prompting gives no examples; the model uses only its pre-trained knowledge. Few-shot prompting provides 1–10 demonstrations in the prompt, generally improving accuracy on the target task."
+  }
+]

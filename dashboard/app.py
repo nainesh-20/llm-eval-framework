@@ -221,7 +221,7 @@ def main() -> None:
     st.markdown(
         """
         <h1 style='margin-bottom:0'>🔬 LLM Eval Framework</h1>
-        <p style='color:#666; font-size:1.1rem; margin-top:0.25rem'>
+        <p style='color:#aaa; font-size:1.1rem; margin-top:0.25rem'>
         Benchmarking LLMs across faithfulness, hallucination, PII safety, toxicity & latency
         </p>
         """,
@@ -230,6 +230,10 @@ def main() -> None:
     st.markdown("---")
 
     runs, is_live = get_runs()
+
+    # Surface the benchmark date in a subtle way
+    if not is_live and runs:
+        st.caption("📊 Showing pre-computed benchmark results from March 2026. Run `llm-eval run` locally to generate live data.")
 
     # ── Sidebar ───────────────────────────────────────────────────────────────
     with st.sidebar:
@@ -274,13 +278,13 @@ def main() -> None:
                 return "background-color: #b71c1c22; color: #b71c1c"
         return ""
 
-    styled = lb_df.style.applymap(
+    styled = lb_df.style.map(
         color_score,
         subset=[c.capitalize() for c in METRICS] + ["Overall"],
     ).format(
         {c.capitalize(): "{:.2f}" for c in METRICS} | {"Overall": "{:.2f}"}
     )
-    st.dataframe(styled, use_container_width=True, height=160)
+    st.dataframe(styled, use_container_width=True, height=200)
 
     # ── Metric Comparison Charts ───────────────────────────────────────────────
     st.markdown("## 📊 Metric Comparison")

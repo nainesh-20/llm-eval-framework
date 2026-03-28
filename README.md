@@ -14,7 +14,7 @@ Most teams that ship LLMs have no systematic way to measure whether they're gett
 
 | CLI Eval Run | PR Comment Report | Streamlit Leaderboard |
 |---|---|---|
-| `llm-eval run --config configs/eval.yaml` | Auto-posted on every PR | Live at [streamlit.app link] |
+| `llm-eval run --config configs/eval.yaml` | Auto-posted on every PR | Live at [[streamlit.app](https://llm-eval-framework.streamlit.app/) link] |
 
 ---
 
